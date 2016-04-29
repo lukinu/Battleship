@@ -3,14 +3,15 @@ package org.lukin.game.seabattle.Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public class Computer extends Player implements Serializable {
     private static final long serialVersionUID = 1L;
-    private ArrayList<Cell> groupToShoot = new ArrayList<Cell>();
-    private ArrayList<Cell> smartModeCells = new ArrayList<Cell>();
+    private List<Cell> groupToShoot = new ArrayList<Cell>();
+    private List<Cell> smartModeCells = new ArrayList<Cell>();
 
-    public Computer() {
+    Computer() {
         super("Computer");
     }
 

@@ -2,12 +2,13 @@ package org.lukin.game.seabattle.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Field implements Serializable {
     private static final long serialVersionUID = 1L;
-    private ArrayList<Cell> field = new ArrayList<Cell>(SeaBattleConstants.FIELD_SIZE * SeaBattleConstants.FIELD_SIZE);
-    private ArrayList<Ship> ships = new ArrayList<Ship>(SeaBattleConstants.SHIPS_TOTAL);
+    private List<Cell> field = new ArrayList<Cell>(SeaBattleConstants.FIELD_SIZE * SeaBattleConstants.FIELD_SIZE);
+    private List<Ship> ships = new ArrayList<Ship>(SeaBattleConstants.SHIPS_TOTAL);
     private Player owner;
 
     private class Placement {
@@ -49,7 +50,7 @@ public class Field implements Serializable {
         }
     }
 
-    public ArrayList<Cell> getField() {
+    public List<Cell> getField() {
         return field;
     }
 

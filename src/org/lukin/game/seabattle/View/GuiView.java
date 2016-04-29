@@ -14,45 +14,33 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GuiView implements Serializable {
 
-    JFrame frame;
-    JPanel controlPanel;
-    JPanel names;
-    JPanel leftPanel;
-    JPanel rightPanel;
-    JFileChooser fileChooser;
-    ArrayList<JButton> leftField = new ArrayList<JButton>(100);
-    ArrayList<JButton> rightField = new ArrayList<JButton>(100);
-    JLabel outputString;
-    JLabel firstPlayer;
-    JLabel secondPlayer;
-    JToolBar toolBar;
-    JButton exitButton;
-    JButton openButton;
-    JButton saveButton;
-    JButton restartButton;
-    JButton setComputerModeButton;
-    ImageIcon iExit;
-    ImageIcon iSave;
-    ImageIcon iOpen;
-    ImageIcon iRestart;
-    short pressed_x;
-    short pressed_y;
-    boolean isSmartMode = false;
+    private JFileChooser fileChooser;
+    private List<JButton> leftField;
+    private List<JButton> rightField;
+    private JLabel outputString;
+    private JLabel firstPlayer;
+    private JLabel secondPlayer;
+    private JToolBar toolBar;
+    private JButton setComputerModeButton;
+    private short pressed_x;
+    private short pressed_y;
+    private boolean isSmartMode = false;
 
     public boolean isSmartMode() {
         return isSmartMode;
     }
 
     public GuiView() {
-        iExit = createImageIcon("images/Exit16.png", "exit");
-        iSave = createImageIcon("images/SaveAll16.gif", "save");
-        iOpen = createImageIcon("images/Open16.gif", "open");
-        iRestart = createImageIcon("images/Refresh16.gif", "restart game");
+        ImageIcon iExit = createImageIcon("images/Exit16.png", "exit");
+        ImageIcon iSave = createImageIcon("images/SaveAll16.gif", "save");
+        ImageIcon iOpen = createImageIcon("images/Open16.gif", "open");
+        ImageIcon iRestart = createImageIcon("images/Refresh16.gif", "restart game");
 
-        frame = new JFrame("SeaBattle");
+        JFrame frame = new JFrame("SeaBattle");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 //        frame.setPreferredSize(new Dimension(450, 330));
 
@@ -60,9 +48,9 @@ public class GuiView implements Serializable {
         firstPlayer.setHorizontalAlignment(JLabel.CENTER);
         secondPlayer = new JLabel("player two");
         secondPlayer.setHorizontalAlignment(JLabel.CENTER);
-        controlPanel = new JPanel();
+        JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new GridLayout(2, 1));
-        names = new JPanel();
+        JPanel names = new JPanel();
         names.setLayout(new GridLayout(1, 2));
         names.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         toolBar = new JToolBar();
@@ -83,7 +71,7 @@ public class GuiView implements Serializable {
             }
         });
 
-        exitButton = new JButton(iExit);
+        JButton exitButton = new JButton(iExit);
         exitButton.setToolTipText("Exit");
         exitButton.addActionListener(new ActionListener() {
             @Override
@@ -92,7 +80,7 @@ public class GuiView implements Serializable {
             }
         });
 
-        openButton = new JButton(iOpen);
+        JButton openButton = new JButton(iOpen);
         openButton.setToolTipText("Open saved game");
         openButton.addActionListener(new ActionListener() {
             @Override
@@ -115,7 +103,7 @@ public class GuiView implements Serializable {
             }
         });
 
-        saveButton = new JButton(iSave);
+        JButton saveButton = new JButton(iSave);
         saveButton.setToolTipText("Save the game");
         saveButton.addActionListener(new ActionListener() {
             @Override
@@ -135,7 +123,7 @@ public class GuiView implements Serializable {
             }
         });
 
-        restartButton = new JButton(iRestart);
+        JButton restartButton = new JButton(iRestart);
         restartButton.setToolTipText("Restart game");
         restartButton.addActionListener(new ActionListener() {
             @Override
@@ -152,14 +140,16 @@ public class GuiView implements Serializable {
         });
 
         // filed panels
-        leftPanel = new JPanel();
+        JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new GridLayout(SeaBattleConstants.FIELD_SIZE, SeaBattleConstants.FIELD_SIZE));
         leftPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        rightPanel = new JPanel();
+        JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new GridLayout(SeaBattleConstants.FIELD_SIZE, SeaBattleConstants.FIELD_SIZE));
         rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // initialization of field panels
+        leftField = new ArrayList<JButton>(100);
+        rightField = new ArrayList<JButton>(100);
         for (int i = 0; i < SeaBattleConstants.FIELD_SIZE; i++) {
             for (int j = 0; j < SeaBattleConstants.FIELD_SIZE; j++) {
                 leftField.add(i * SeaBattleConstants.FIELD_SIZE + j, new JButton());
@@ -279,7 +269,7 @@ public class GuiView implements Serializable {
             toFront();
         }
 
-        public String getUserInput() {
+        String getUserInput() {
             return userInput;
         }
     }
@@ -303,7 +293,7 @@ public class GuiView implements Serializable {
             toFront();
         }
 
-        public boolean getUserInput() {
+        boolean getUserInput() {
             return userInput;
         }
     }
@@ -329,7 +319,7 @@ public class GuiView implements Serializable {
         return new FieldPoint(pressed_x, pressed_y);
     }
 
-    protected ImageIcon createImageIcon(String path, String description) {
+    private ImageIcon createImageIcon(String path, String description) {
         java.net.URL imgURL = getClass().getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL, description);

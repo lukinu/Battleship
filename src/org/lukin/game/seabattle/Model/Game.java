@@ -6,11 +6,12 @@ import org.lukin.game.seabattle.Controller.GuiController;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
     public static final Object key = new Object();
     public static final Object restartKey = new Object();
-    private HashMap<String, Player> players;
+    private Map<String, Player> players;
     private AbleToInteract userInterface;
     // array of player's own battlefields
     private HashMap<String, Field> fields;

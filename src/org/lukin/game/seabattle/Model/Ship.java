@@ -2,6 +2,7 @@ package org.lukin.game.seabattle.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ship implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -11,7 +12,7 @@ public class Ship implements Serializable {
     private short size = 0;
     private Field field;
     // ship itself consists of cells
-    private ArrayList<Cell> shipCells = new ArrayList<Cell>(size);
+    private List<Cell> shipCells = new ArrayList<Cell>(size);
 
     private boolean isDead = false;
 
